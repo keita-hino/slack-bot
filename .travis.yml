@@ -1,0 +1,12 @@
+language: ruby
+rvm: 2.5.1
+services: postgresql
+cache: bundler
+before_script:
+- cp config/database.travis.yml config/database.yml
+- bundle exec rake db:create
+- bundle exec rake db:migrate
+script: bundle exec rspec spec/
+notifications:
+  slack:
+    secure: n4pJvsppbSYSE5/EuWU0+SQ6rfPOc8Q25fgKbkwqytzUwrambTcx6j0IIAV3dPWfJ6cJ1alPROjBHemonnxUR/SABHeX6OKF7H3ILfS5Z48wqg3N4/R55PxsZ7NyTQGMyzSIJxkdEXva8LolveHcH2vf4xrfC+cx3nvBls089VEKFvC5uPyuPhp0r1kMYLXqqOa2urNrNEBn+YhIlkxdg7AUZkAAkFmU3Ozxp8zLkkoWdxhegPLq24jCLqKMvvkQE/Qp5sEsqCojmkbBWI39y1RnGDnXzzB27ASRQYaOEqmIJKKBNtfUcjkTTRnHqR7zg7/3c34AcpcP9mrv2yirad4aaZ03QYb0ltCvOgojAh1WmPr4BCvrtWCmNu+RlhoIFwDOoldzOMTegR4kY6sOaqxaOv2BvLi7RBmv6uN1S2kgkkKVT6XNsis/ssgFYcj7Uyp7lYp8SqUycS36qXACHeKwkkZ10+0Dm+zspihWAtb6ywTDqqrTOeg9jEVA3VCAvPHNiNGT2AV7tGcXRAzUyHdGLVpZe7eUoxQwI8Wz790+rnpoymJSD4SRUegcvbTxUQDmJtJcGhqg4bulIciggJHGZ00PzhIpuZqCYirAu/vpkLClF+Nj2ncF8H3G4Dssoj/klJjpK/EDUxYQ05TbLmotWjs+Dg8qQ7HHR/auUQY=
