@@ -2,7 +2,7 @@ require 'slack-ruby-client'
 require 'slack-ruby-bot'
 
 class SlackbotController < ApplicationController
-  before_action :slack_init, only: [:report, :help, :add]
+  before_action :slack_init, only: [:report, :help, :add, :show]
   def add
     t = Task.new(
       user_id:params['user_id'],
@@ -10,8 +10,22 @@ class SlackbotController < ApplicationController
     )
     t.save
   end
+
+  def show
+    s = Task.where(user_id:params['user_id'])
+    if s[0].blank?
+      message = Command.template(params['channel_id'],"タスクが登録されていません")
+    else
+      task = "タスク一覧"
+      s.map{|v| task << "\n>・" + v.task_name }
+      message = Command.template(params['channel_id'],task)
+    end
+    @client.chat_postMessage(message)
+    head :ok
+  end
+
   def report
-    message = Command.report(params['channel_id'])
+    message = Command.template(params['channel_id'],"成功")
     @client.chat_postMessage(message)
     head :ok
   end
