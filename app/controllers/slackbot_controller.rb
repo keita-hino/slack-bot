@@ -2,23 +2,24 @@ require 'slack-ruby-client'
 require 'slack-ruby-bot'
 
 class SlackbotController < ApplicationController
+  before_action :slack_init, only: [:report, :help]
   def report
-    Slack.configure do |config|
-      config.token = ENV['SLACK_BOT_USER_TOKEN']
-      raise 'Missing ENV[SLACK_BOT_USER_TOKEN]!' unless config.token
-    end
-    client = Slack::Web::Client.new
     message = Command.report(params['channel_id'])
-    client.chat_postMessage(message)
+    @client.chat_postMessage(message)
     head :ok
   end
+
   def help
+    message = Command.help(params['channel_id'])
+    @client.chat_postMessage(message)
+    head :ok
+  end
+
+  def slack_init
     Slack.configure do |config|
       config.token = ENV['SLACK_BOT_USER_TOKEN']
       raise 'Missing ENV[SLACK_BOT_USER_TOKEN]!' unless config.token
     end
-    client = Slack::Web::Client.new
-    message = Command.help(params['channel_id'])
-    client.chat_postMessage(message)
+    @client = Slack::Web::Client.new
   end
 end
