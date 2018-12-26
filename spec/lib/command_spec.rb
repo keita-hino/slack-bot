@@ -1,25 +1,28 @@
 require 'rails_helper'
 
 describe Command do
-  describe '#report' do
-    it 'is output report correct' do
+  CHANNEL_ID = 'C999999'
+
+  describe '#template' do
+    it 'is template correct' do
+      text = "test"
       message = {
-        channel:"C999999",
-        text: "成功",
+        channel:CHANNEL_ID,
+        text: text,
         as_user: false
       }
-      expect(Command.report("C999999")).to eq(message)
+      expect(Command.template(CHANNEL_ID,text)).to eq(message)
     end
   end
 
   describe '#help' do
     it 'is help message correct' do
       message = {
-        channel:"C999999",
+        channel:CHANNEL_ID,
         text: help_text,
         as_user: false
       }
-      expect(Command.help("C999999")).to eq(message)
+      expect(Command.help(CHANNEL_ID)).to eq(message)
     end
   end
 
