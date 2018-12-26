@@ -1,11 +1,12 @@
 class Command
-  def self.report(channel_id)
+  def self.template(channel_id,text)
     {
-        channel:channel_id,
-        text: "成功",
-        as_user: false
+      channel:channel_id,
+      text: text,
+      as_user: false
     }
   end
+
   def self.help(channel_id)
     help_text = <<-EOS
       スラッシュコマンド一覧
@@ -22,10 +23,7 @@ class Command
       /task_help
         →各種コマンドの説明を表示する。
     EOS
-    {
-        channel:channel_id,
-        text: help_text,
-        as_user: false
-    }
+
+    self.template(channel_id,help_text)
   end
 end
