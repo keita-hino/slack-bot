@@ -13,7 +13,7 @@ RSpec.describe SlackbotController, type: :controller do
         team_domain:  'team_domain',
         channel_id:   'channel_id',
         channel_name: 'channel_name',
-        user_id:      'user_id',
+        user_id:      'C0XXXX',
         user_name:    'user_name',
         command:      '/task_add',
         text:         'addコマンド作成',
@@ -22,4 +22,24 @@ RSpec.describe SlackbotController, type: :controller do
       expect(response).to have_http_status(:success)
     end
   end
+  describe '#show' do
+    it 'is task show correct' do
+      VCR.use_cassette("controller/post_slack_show") do
+        post :show,params: {
+          token:        'token',
+          team_id:      'team_id',
+          team_domain:  'team_domain',
+          channel_id:   'CEN70LSTT',
+          channel_name: 'channel_name',
+          user_id:      'C0XXXX',
+          user_name:    'user_name',
+          command:      '/task_add',
+          text:         'addコマンド作成',
+          response_url: 'https://example.com'
+        }
+      end
+      expect(response).to have_http_status(:success)
+    end
+  end
+
 end
