@@ -12,14 +12,7 @@ class SlackbotController < ApplicationController
   end
 
   def show
-    s = Task.where(user_id:params['user_id'])
-    if s[0].blank?
-      message = Message.template(params['channel_id'],"タスクが登録されていません")
-    else
-      task = "タスク一覧"
-      s.map{|v| task << "\n>・" + v.task_name }
-      message = Message.template(params['channel_id'],task)
-    end
+    message = Message.show_result(params['user_id'],params['channel_id'])
     @client.chat_postMessage(message)
     head :ok
   end
