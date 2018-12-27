@@ -1,33 +1,14 @@
-require 'rails_helper'
-
-describe Command do
-  CHANNEL_ID = 'C999999'
-
-  describe '#template' do
-    it 'is template correct' do
-      text = "test"
-      message = {
-        channel:CHANNEL_ID,
-        text: text,
-        as_user: false
-      }
-      expect(Command.template(CHANNEL_ID,text)).to eq(message)
-    end
+class Message
+  def self.template(channel_id,text)
+    {
+      channel:channel_id,
+      text: text,
+      as_user: false
+    }
   end
 
-  describe '#help' do
-    it 'is help message correct' do
-      message = {
-        channel:CHANNEL_ID,
-        text: help_text,
-        as_user: false
-      }
-      expect(Command.help(CHANNEL_ID)).to eq(message)
-    end
-  end
-
-  def help_text
-    <<-EOS
+  def self.help(channel_id)
+    help_text = <<-EOS
       スラッシュコマンド一覧
       /task_add タスク名 due: 21:00
         →タスクを追加する。dueオプションをつけると期限を設定することができる。
@@ -42,6 +23,7 @@ describe Command do
       /task_help
         →各種コマンドの説明を表示する。
     EOS
-  end
 
+    self.template(channel_id,help_text)
+  end
 end
