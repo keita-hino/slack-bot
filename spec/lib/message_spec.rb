@@ -2,6 +2,31 @@ require 'rails_helper'
 
 describe Message do
   CHANNEL_ID = 'C999999'
+  USER_ID = 'U999999'
+
+  describe '#show_result' do
+    context 'when task empty' do
+      it 'return empty designated message' do
+        message = {
+          channel:CHANNEL_ID,
+          text:"タスクが登録されていません",
+          as_user:false
+        }
+        expect(Message.show_result(USER_ID,CHANNEL_ID)).to eq(message)
+      end
+    end
+    context 'when task not empty' do
+      it 'return not empty designated message' do
+        FactoryBot.create(:task)
+        message = {
+          channel:CHANNEL_ID,
+          text:"タスク一覧\n>・test",
+          as_user:false
+        }
+        expect(Message.show_result(USER_ID,CHANNEL_ID)).to eq(message)
+      end
+    end
+  end
 
   describe '#template' do
     it 'is template correct' do
