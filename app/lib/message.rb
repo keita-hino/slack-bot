@@ -1,4 +1,15 @@
 class Message
+  def self.show_result(user_id,channel_id)
+    s = Task.where(user_id:user_id)
+    if s[0].blank?
+      message = Message.template(channel_id,"タスクが登録されていません")
+    else
+      task = "タスク一覧"
+      s.map{|v| task << "\n>・" + v.task_name }
+      message = Message.template(channel_id,task)
+    end
+  end
+
   def self.template(channel_id,text)
     {
       channel:channel_id,
