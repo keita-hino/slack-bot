@@ -24,7 +24,7 @@ RSpec.describe SlackbotController, type: :controller do
   end
   describe '#show' do
     it 'is task show correct' do
-      VCR.use_cassette("controller/post_slack_show") do
+      VCR.use_cassette("controller/show/post_show_success") do
         post :show,params: {
           token:        'token',
           team_id:      'team_id',
