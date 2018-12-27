@@ -27,7 +27,7 @@ http_interactions:
       Connection:
       - keep-alive
       Date:
-      - Wed, 26 Dec 2018 07:18:27 GMT
+      - Thu, 27 Dec 2018 08:44:37 GMT
       Server:
       - Apache
       Expires:
@@ -45,7 +45,7 @@ http_interactions:
       X-Xss-Protection:
       - '0'
       X-Slack-Req-Id:
-      - e3c7eb0c-640e-4eb2-91e7-046fa3b97856
+      - ed9db344-ed72-425c-8cca-97df6446424f
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       Referrer-Policy:
@@ -55,16 +55,16 @@ http_interactions:
       Access-Control-Allow-Origin:
       - "*"
       X-Via:
-      - haproxy-www-6xme
+      - haproxy-www-ixuh
       X-Cache:
       - Miss from cloudfront
       Via:
-      - 1.1 9dbab677f8be787117e804696d7d4017.cloudfront.net (CloudFront)
+      - 1.1 dd8f51bb351d32dc7365f17f23248a8f.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - fLIqGOpOkLzI9SrHUcQ7VmA8KX-PXYtKFBgQjrm0wTn8qhBQ9p00Kw==
+      - VKeWAJj8daUQ4GJxqf8I1HwNOAdroKEeRs7KA1jnDJonvCogXYfx_A==
     body:
       encoding: ASCII-8BIT
-      string: '{"ok":true,"channel":"CEN70LSTT","ts":"1545808707.000100","message":{"type":"message","subtype":"bot_message","text":"\u30bf\u30b9\u30af\u4e00\u89a7\n&gt;\u30fbtest","ts":"1545808707.000100","username":"slack-bot","bot_id":"BF1B2C91Q"}}'
+      string: '{"ok":true,"channel":"CEN70LSTT","ts":"1545900278.000700","message":{"type":"message","subtype":"bot_message","text":"\u30bf\u30b9\u30af\u4e00\u89a7\n&gt;\u30fbtest","ts":"1545900278.000700","username":"slack-bot","bot_id":"BF1B2C91Q"}}'
     http_version: 
-  recorded_at: Wed, 26 Dec 2018 07:18:27 GMT
+  recorded_at: Thu, 27 Dec 2018 08:44:38 GMT
 recorded_with: VCR 4.0.0
