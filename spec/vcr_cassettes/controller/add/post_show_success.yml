@@ -5,7 +5,7 @@ http_interactions:
     uri: https://slack.com/api/chat.postMessage
     body:
       encoding: UTF-8
-      string: as_user=false&channel=test&text=%E3%82%BF%E3%82%B9%E3%82%AF%E4%B8%80%E8%A6%A7%0A%3E%E3%83%BBtest&token=<SLACK_BOT_USER_TOKEN>
+      string: as_user=false&channel=test&text=%E4%B8%8B%E8%A8%98%E3%81%AE%E3%82%BF%E3%82%B9%E3%82%AF%E3%82%92%E8%BF%BD%E5%8A%A0%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F%0A%3E%3E%3Eadd%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E4%BD%9C%E6%88%90&token=<SLACK_BOT_USER_TOKEN>
     headers:
       Accept:
       - application/json; charset=utf-8
@@ -23,11 +23,11 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
-      - '181'
+      - '224'
       Connection:
       - keep-alive
       Date:
-      - Thu, 27 Dec 2018 08:44:37 GMT
+      - Fri, 28 Dec 2018 02:28:24 GMT
       Server:
       - Apache
       Expires:
@@ -45,7 +45,7 @@ http_interactions:
       X-Xss-Protection:
       - '0'
       X-Slack-Req-Id:
-      - ed9db344-ed72-425c-8cca-97df6446424f
+      - 6bceba84-9b11-4f04-81c2-9768ac424e5a
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       Referrer-Policy:
@@ -55,16 +55,16 @@ http_interactions:
       Access-Control-Allow-Origin:
       - "*"
       X-Via:
-      - haproxy-www-ixuh
+      - haproxy-www-xiak
       X-Cache:
       - Miss from cloudfront
       Via:
-      - 1.1 dd8f51bb351d32dc7365f17f23248a8f.cloudfront.net (CloudFront)
+      - 1.1 2ccb5b2d5a7d69c33c69d35555b88741.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - VKeWAJj8daUQ4GJxqf8I1HwNOAdroKEeRs7KA1jnDJonvCogXYfx_A==
+      - Qop4xZoCyC6Fed7Y6a0h9nVQ8QwbpJ7bOQL365FkcXdy6dAcd__KBw==
     body:
       encoding: ASCII-8BIT
-      string: '{"ok":true,"channel":"test","ts":"1545900278.000700","message":{"type":"message","subtype":"bot_message","text":"\u30bf\u30b9\u30af\u4e00\u89a7\n&gt;\u30fbtest","ts":"1545900278.000700","username":"slack-bot","bot_id":"BF1B2C91Q"}}'
+      string: '{"ok":true,"channel":"test","ts":"1545964104.001300","message":{"type":"message","subtype":"bot_message","text":"\u4e0b\u8a18\u306e\u30bf\u30b9\u30af\u3092\u8ffd\u52a0\u3057\u307e\u3057\u305f\n&gt;&gt;&gt;add\u30b3\u30de\u30f3\u30c9\u4f5c\u6210","ts":"1545964104.001300","username":"slack-bot","bot_id":"BF1B2C91Q"}}'
     http_version:
-  recorded_at: Thu, 27 Dec 2018 08:44:38 GMT
+  recorded_at: Fri, 28 Dec 2018 02:28:24 GMT
 recorded_with: VCR 4.0.0
