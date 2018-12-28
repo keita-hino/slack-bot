@@ -5,7 +5,7 @@ http_interactions:
     uri: https://slack.com/api/chat.postMessage
     body:
       encoding: UTF-8
-      string: as_user=false&channel=test&text=%E3%82%BF%E3%82%B9%E3%82%AF%E4%B8%80%E8%A6%A7%0A%3E%E3%83%BBtest&token=<SLACK_BOT_USER_TOKEN>
+      string: as_user=false&channel=test&text=%E3%82%BF%E3%82%B9%E3%82%AF%E3%81%8C%E7%99%BB%E9%8C%B2%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%81%BE%E3%81%9B%E3%82%93&token=<SLACK_BOT_USER_TOKEN>
     headers:
       Accept:
       - application/json; charset=utf-8
@@ -23,11 +23,11 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
-      - '181'
+      - '191'
       Connection:
       - keep-alive
       Date:
-      - Thu, 27 Dec 2018 08:44:37 GMT
+      - Fri, 28 Dec 2018 04:52:23 GMT
       Server:
       - Apache
       Expires:
@@ -45,7 +45,7 @@ http_interactions:
       X-Xss-Protection:
       - '0'
       X-Slack-Req-Id:
-      - ed9db344-ed72-425c-8cca-97df6446424f
+      - d6eb36a5-0242-4050-87fd-9e75543872ba
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       Referrer-Policy:
@@ -55,16 +55,16 @@ http_interactions:
       Access-Control-Allow-Origin:
       - "*"
       X-Via:
-      - haproxy-www-ixuh
+      - haproxy-www-rb7f
       X-Cache:
       - Miss from cloudfront
       Via:
-      - 1.1 dd8f51bb351d32dc7365f17f23248a8f.cloudfront.net (CloudFront)
+      - 1.1 a7fb004a53afade9b926811822373188.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - VKeWAJj8daUQ4GJxqf8I1HwNOAdroKEeRs7KA1jnDJonvCogXYfx_A==
+      - ETGNvrj6edvmXDTvSLiQUWrRFvazjPaNu5Jf2zVt3MNXHgQL3SgDjg==
     body:
       encoding: ASCII-8BIT
-      string: '{"ok":true,"channel":"test","ts":"1545900278.000700","message":{"type":"message","subtype":"bot_message","text":"\u30bf\u30b9\u30af\u4e00\u89a7\n&gt;\u30fbtest","ts":"1545900278.000700","username":"slack-bot","bot_id":"BF1B2C91Q"}}'
+      string: '{"ok":true,"channel":"test","ts":"1545972743.001800","message":{"type":"message","subtype":"bot_message","text":"\u30bf\u30b9\u30af\u304c\u767b\u9332\u3055\u308c\u3066\u3044\u307e\u305b\u3093","ts":"1545972743.001800","username":"slack-bot","bot_id":"BF1B2C91Q"}}'
     http_version:
-  recorded_at: Thu, 27 Dec 2018 08:44:38 GMT
+  recorded_at: Fri, 28 Dec 2018 04:52:23 GMT
 recorded_with: VCR 4.0.0

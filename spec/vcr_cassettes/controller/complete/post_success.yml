@@ -27,7 +27,7 @@ http_interactions:
       Connection:
       - keep-alive
       Date:
-      - Fri, 28 Dec 2018 02:28:24 GMT
+      - Fri, 28 Dec 2018 04:51:52 GMT
       Server:
       - Apache
       Expires:
@@ -45,7 +45,7 @@ http_interactions:
       X-Xss-Protection:
       - '0'
       X-Slack-Req-Id:
-      - 6bceba84-9b11-4f04-81c2-9768ac424e5a
+      - ff2bd9c6-5720-4bbc-a4b8-7bdb825e3364
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       Referrer-Policy:
@@ -55,16 +55,16 @@ http_interactions:
       Access-Control-Allow-Origin:
       - "*"
       X-Via:
-      - haproxy-www-xiak
+      - haproxy-www-f3wc
       X-Cache:
       - Miss from cloudfront
       Via:
-      - 1.1 2ccb5b2d5a7d69c33c69d35555b88741.cloudfront.net (CloudFront)
+      - 1.1 20c298a88202c898605f66daaa6e913f.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - Qop4xZoCyC6Fed7Y6a0h9nVQ8QwbpJ7bOQL365FkcXdy6dAcd__KBw==
+      - yC6bArFqulmbrmOO2_pZUf1oV6G2HHNUonclq8Df_dJXffEykO_rHQ==
     body:
       encoding: ASCII-8BIT
-      string: '{"ok":true,"channel":"test","ts":"1545964104.001300","message":{"type":"message","subtype":"bot_message","text":"\u4e0b\u8a18\u306e\u30bf\u30b9\u30af\u3092\u8ffd\u52a0\u3057\u307e\u3057\u305f\n&gt;&gt;&gt;add\u30b3\u30de\u30f3\u30c9\u4f5c\u6210","ts":"1545964104.001300","username":"slack-bot","bot_id":"BF1B2C91Q"}}'
+      string: '{"ok":true,"channel":"test","ts":"1545972712.001600","message":{"type":"message","subtype":"bot_message","text":"\u4e0b\u8a18\u306e\u30bf\u30b9\u30af\u3092\u8ffd\u52a0\u3057\u307e\u3057\u305f\n&gt;&gt;&gt;add\u30b3\u30de\u30f3\u30c9\u4f5c\u6210","ts":"1545972712.001600","username":"slack-bot","bot_id":"BF1B2C91Q"}}'
     http_version:
-  recorded_at: Fri, 28 Dec 2018 02:28:24 GMT
+  recorded_at: Fri, 28 Dec 2018 04:51:52 GMT
 recorded_with: VCR 4.0.0

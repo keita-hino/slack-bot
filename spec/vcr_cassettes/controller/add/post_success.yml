@@ -1,0 +1,70 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://slack.com/api/chat.postMessage
+    body:
+      encoding: UTF-8
+      string: as_user=false&channel=test&text=%E4%B8%8B%E8%A8%98%E3%81%AE%E3%82%BF%E3%82%B9%E3%82%AF%E3%82%92%E8%BF%BD%E5%8A%A0%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F%0A%3E%3E%3Eadd%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E4%BD%9C%E6%88%90&token=<SLACK_BOT_USER_TOKEN>
+    headers:
+      Accept:
+      - application/json; charset=utf-8
+      User-Agent:
+      - Slack Ruby Client/0.13.1
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '224'
+      Connection:
+      - keep-alive
+      Date:
+      - Fri, 28 Dec 2018 04:52:23 GMT
+      Server:
+      - Apache
+      Expires:
+      - Mon, 26 Jul 1997 05:00:00 GMT
+      X-Content-Type-Options:
+      - nosniff
+      Cache-Control:
+      - private, no-cache, no-store, must-revalidate
+      X-Oauth-Scopes:
+      - identify,commands,channels:history,channels:write,chat:write:bot
+      Pragma:
+      - no-cache
+      X-Accepted-Oauth-Scopes:
+      - chat:write:bot
+      X-Xss-Protection:
+      - '0'
+      X-Slack-Req-Id:
+      - 3914996f-16d9-4a02-b5fd-0d2beb27c0d5
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Referrer-Policy:
+      - no-referrer
+      Vary:
+      - Accept-Encoding
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Via:
+      - haproxy-www-soca
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 a015e66b132fa351e47e66c6b8e91ae6.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - fVxqcfFN1s-IfsdxfUCoWWlqx82Al7Tq_Npjk_vzMqgO5HC0MvmK4A==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"ok":true,"channel":"test","ts":"1545972743.001700","message":{"type":"message","subtype":"bot_message","text":"\u4e0b\u8a18\u306e\u30bf\u30b9\u30af\u3092\u8ffd\u52a0\u3057\u307e\u3057\u305f\n&gt;&gt;&gt;add\u30b3\u30de\u30f3\u30c9\u4f5c\u6210","ts":"1545972743.001700","username":"slack-bot","bot_id":"BF1B2C91Q"}}'
+    http_version:
+  recorded_at: Fri, 28 Dec 2018 04:52:23 GMT
+recorded_with: VCR 4.0.0
