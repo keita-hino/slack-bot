@@ -4,6 +4,18 @@ describe Message do
   CHANNEL_ID = 'C999999'
   USER_ID = 'U999999'
 
+  describe '#add_message' do
+    it 'return add message' do
+      text = 'addアクション追加'
+      message = {
+        channel:CHANNEL_ID,
+        text:"下記のタスクを追加しました\n>>>" + text,
+        as_user:false
+      }
+      expect(Message.add_message(text,CHANNEL_ID)).to eq(message)
+    end
+  end
+
   describe '#show_result' do
     context 'when task empty' do
       it 'return empty designated message' do
