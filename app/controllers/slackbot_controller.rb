@@ -4,11 +4,12 @@ require 'slack-ruby-bot'
 class SlackbotController < ApplicationController
   before_action :slack_init, only: [:report, :help, :add, :show]
   def add
-    t = Task.new(
+    Task.create(
       user_id:params['user_id'],
       task_name:params['text']
     )
-    t.save
+    message = Message.add_message(params['text'],params['channel_id'])
+    @client.chat_postMessage(message)
   end
 
   def show
