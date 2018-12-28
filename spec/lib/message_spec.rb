@@ -4,6 +4,46 @@ describe Message do
   CHANNEL_ID = 'C999999'
   USER_ID = 'U999999'
 
+  describe '#complete_message' do
+    context 'when not found task' do
+      it 'return not found designated message' do
+        text = "not found"
+        message = message = {
+          channel:CHANNEL_ID,
+          text:"入力されたタスクが見つかりません:face_with_monocle:\n>>>" + text,
+          as_user:false
+        }
+        expect(Message.complete_message(text,CHANNEL_ID)).to eq(message)
+      end
+    end
+
+    context 'when already task is complete' do
+      it 'return already complete designated message' do
+        FactoryBot.create(:task,completed:true,task_name:"completed")
+        text = "completed"
+        message = message = {
+          channel:CHANNEL_ID,
+          text:"入力されたタスクのステータスはすでに「完了」になってます:man-gesturing-no:\n>>>" + text,
+          as_user:false
+        }
+        expect(Message.complete_message(text,CHANNEL_ID)).to eq(message)
+      end
+    end
+
+    context 'when already task is complete' do
+      it 'return already complete designated message' do
+        FactoryBot.create(:task,completed:false,task_name:"complete")
+        text = "complete"
+        message = message = {
+          channel:CHANNEL_ID,
+          text:"入力されたタスクのステータスを「完了」に変更しました:+1:\n>>>" + text,
+          as_user:false
+        }
+        expect(Message.complete_message(text,CHANNEL_ID)).to eq(message)
+      end
+    end
+  end
+
   describe '#add_message' do
     it 'return add message' do
       text = 'addアクション追加'
