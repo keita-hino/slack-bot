@@ -1,4 +1,9 @@
 class Message
+  def self.add_message(text,channel_id)
+    message = "下記のタスクを追加しました\n>>>" + text
+    Message.template(channel_id,message)
+  end
+
   def self.show_result(user_id,channel_id)
     s = Task.where(user_id:user_id)
     if s[0].blank?
