@@ -7,18 +7,20 @@ RSpec.describe SlackbotController, type: :controller do
 
   describe '#add' do
     it 'is task add correct' do
-      post :add,params: {
-        token:        'token',
-        team_id:      'team_id',
-        team_domain:  'team_domain',
-        channel_id:   'channel_id',
-        channel_name: 'channel_name',
-        user_id:      'C0XXXX',
-        user_name:    'user_name',
-        command:      '/task_add',
-        text:         'addコマンド作成',
-        response_url: 'https://example.com'
-      }
+      VCR.use_cassette("controller/add/post_show_success") do
+        post :add,params: {
+          token:        'token',
+          team_id:      'team_id',
+          team_domain:  'team_domain',
+          channel_id:   'CEN70LSTT',
+          channel_name: 'channel_name',
+          user_id:      'C0XXXX',
+          user_name:    'user_name',
+          command:      '/task_add',
+          text:         'addコマンド作成',
+          response_url: 'https://example.com'
+        }
+      end
       expect(response).to have_http_status(:success)
     end
   end
