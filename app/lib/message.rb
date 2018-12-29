@@ -1,4 +1,35 @@
 class Message
+  def self.report_message(channel_id)
+    message = "Today-Report\n"
+
+    message = Message.report_create(message)
+    message = Message.report_complete(message)
+    message = Message.report_incomplete(message)
+
+    Message.template(channel_id,message)
+  end
+
+  def self.report_create(message)
+    create_list = Task.today_create_task
+    message << "\n本日追加されたタスク:new:\n"
+    create_list.map{|v| message << "\n>" + v.task_name}
+    return message
+  end
+
+  def self.report_complete(message)
+    complete_list = Task.today_completed_task
+    message << "\n\n本日完了したタスク:ok:\n"
+    complete_list.map{|v| message << "\n>" + v.task_name}
+    return message
+  end
+
+  def self.report_incomplete(message)
+    incomplete_list = Task.incomplete_task
+    message << "\n\n明日以降の残タスク:up:\n"
+    incomplete_list.map{|v| message << "\n>" + v.task_name}
+    return message
+  end
+
   def self.delete_message(text,channel_id)
     result = Task.where(task_name:text).delete_all
     case result
