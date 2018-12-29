@@ -1,4 +1,15 @@
 class Message
+  def self.delete_message(text,channel_id)
+    result = Task.where(task_name:text).delete_all
+    case result
+    when 0
+      message = "入力されたタスクが見つかりません:face_with_monocle:\n>>>#{text}"
+    when 1
+      message = "入力されたタスクを削除しました:+1:\n>>>#{text}"
+    end
+    Message.template(channel_id,message)
+  end
+
   def self.complete_message(text,channel_id)
     s = Task.where(task_name:text)
     if s[0].nil?
