@@ -4,6 +4,33 @@ describe Message do
   CHANNEL_ID = 'C999999'
   USER_ID = 'U999999'
 
+  describe '#delete_message' do
+    context 'when not found task' do
+      it 'return not found designated message' do
+        text = "not found"
+        message = message = {
+          channel:CHANNEL_ID,
+          text:"入力されたタスクが見つかりません:face_with_monocle:\n>>>" + text,
+          as_user:false
+        }
+        expect(Message.delete_message(text,CHANNEL_ID)).to eq(message)
+      end
+    end
+
+    context 'when task is found' do
+      it 'return delete designated message' do
+        FactoryBot.create(:task,completed:false,task_name:"deleted")
+        text = "deleted"
+        message = message = {
+          channel:CHANNEL_ID,
+          text:"入力されたタスクを削除しました:+1:\n>>>" + text,
+          as_user:false
+        }
+        expect(Message.delete_message(text,CHANNEL_ID)).to eq(message)
+      end
+    end
+  end
+
   describe '#complete_message' do
     context 'when not found task' do
       it 'return not found designated message' do
