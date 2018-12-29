@@ -1,0 +1,70 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://slack.com/api/chat.postMessage
+    body:
+      encoding: UTF-8
+      string: as_user=false&channel=test&text=Today-Report%0A%0A%E6%9C%AC%E6%97%A5%E8%BF%BD%E5%8A%A0%E3%81%95%E3%82%8C%E3%81%9F%E3%82%BF%E3%82%B9%E3%82%AF%3Anew%3A%0A%0A%3Etest%0A%0A%E6%9C%AC%E6%97%A5%E5%AE%8C%E4%BA%86%E3%81%97%E3%81%9F%E3%82%BF%E3%82%B9%E3%82%AF%3Aok%3A%0A%0A%0A%E6%98%8E%E6%97%A5%E4%BB%A5%E9%99%8D%E3%81%AE%E6%AE%8B%E3%82%BF%E3%82%B9%E3%82%AF%3Aup%3A%0A%0A%3Etest&token=<SLACK_BOT_USER_TOKEN>
+    headers:
+      Accept:
+      - application/json; charset=utf-8
+      User-Agent:
+      - Slack Ruby Client/0.13.1
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '253'
+      Connection:
+      - keep-alive
+      Date:
+      - Sat, 29 Dec 2018 03:28:24 GMT
+      Server:
+      - Apache
+      Expires:
+      - Mon, 26 Jul 1997 05:00:00 GMT
+      X-Content-Type-Options:
+      - nosniff
+      Cache-Control:
+      - private, no-cache, no-store, must-revalidate
+      X-Oauth-Scopes:
+      - identify,commands,channels:history,channels:write,chat:write:bot
+      Pragma:
+      - no-cache
+      X-Accepted-Oauth-Scopes:
+      - chat:write:bot
+      X-Xss-Protection:
+      - '0'
+      X-Slack-Req-Id:
+      - dd4000df-0b21-4a3b-bd97-b2f69a91ae63
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Referrer-Policy:
+      - no-referrer
+      Vary:
+      - Accept-Encoding
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Via:
+      - haproxy-www-ughc
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 85b47597e85277e1280d0655bac190c2.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - KtX1Ab6fCx-i5Mt1v6RmKjMJKZ7LzXCOxOdSCorW__MfilpH16cgQA==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"ok":true,"channel":"test","ts":"1546054104.010000","message":{"type":"message","subtype":"bot_message","text":"Today-Report\n\n\u672c\u65e5\u8ffd\u52a0\u3055\u308c\u305f\u30bf\u30b9\u30af:new:\n\n&gt;test\n\n\u672c\u65e5\u5b8c\u4e86\u3057\u305f\u30bf\u30b9\u30af:ok:\n\n\n\u660e\u65e5\u4ee5\u964d\u306e\u6b8b\u30bf\u30b9\u30af:up:\n\n&gt;test","ts":"1546054104.010000","username":"slack-bot","bot_id":"BF1B2C91Q"}}'
+    http_version:
+  recorded_at: Sat, 29 Dec 2018 03:28:24 GMT
+recorded_with: VCR 4.0.0
