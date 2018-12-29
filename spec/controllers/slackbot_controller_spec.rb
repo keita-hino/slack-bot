@@ -45,6 +45,26 @@ RSpec.describe SlackbotController, type: :controller do
     end
   end
 
+  describe '#delete' do
+    it 'is task delete correct' do
+      VCR.use_cassette("controller/delete/post_success") do
+        post :show,params: {
+          token:        'token',
+          team_id:      'team_id',
+          team_domain:  'team_domain',
+          channel_id:   'test',
+          channel_name: 'channel_name',
+          user_id:      'C0XXXX',
+          user_name:    'user_name',
+          command:      '/task_add',
+          text:         'test',
+          response_url: 'https://example.com'
+        }
+      end
+      expect(response).to have_http_status(:success)
+    end
+  end
+
   describe '#show' do
     it 'is task show correct' do
       VCR.use_cassette("controller/show/post_success") do
