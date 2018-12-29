@@ -2,7 +2,7 @@ require 'slack-ruby-client'
 require 'slack-ruby-bot'
 
 class SlackbotController < ApplicationController
-  before_action :slack_init, only: [:report, :help, :add, :show, :complete]
+  before_action :slack_init, only: [:report, :help, :add, :show, :complete, :delete]
   def add
     Task.create(
       user_id:params['user_id'],
@@ -14,6 +14,11 @@ class SlackbotController < ApplicationController
 
   def complete
     message = Message.complete_message(params['text'],params['channel_id'])
+    @client.chat_postMessage(message)
+  end
+
+  def delete
+    message = Message.delete_message(params['text'],params['channel_id'])
     @client.chat_postMessage(message)
   end
 
