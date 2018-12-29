@@ -29,7 +29,7 @@ class SlackbotController < ApplicationController
   end
 
   def report
-    message = Message.template(params['channel_id'],"成功")
+    message = Message.report_message(params['channel_id'])
     @client.chat_postMessage(message)
     head :ok
   end
