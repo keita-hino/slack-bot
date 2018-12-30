@@ -5,7 +5,7 @@ describe Message do
   USER_ID = 'U999999'
 
   describe '#report_message' do
-    it 'return report message correct' do
+    it 'report message correct' do
       FactoryBot.create(:task,task_name:"complete_task",completed:true)
       FactoryBot.create(:task,task_name:"incomplete_task",completed:false)
 
@@ -19,38 +19,70 @@ describe Message do
   end
 
   describe '#report_create' do
-    it 'return report create list correct' do
-      FactoryBot.create(:task,task_name:"create_task")
-      text = "Today-Report\n"
-      message = "#{text}\n本日追加されたタスク:new:\n\n>create_task"
+    context 'when create list empty' do
+      it 'message correct' do
+        text = "Today-Report\n"
+        message = "#{text}\n本日追加されたタスク:new:\n\n>本日登録されたタスクはまだありません\n"
 
-      expect(Message.report_create(text)).to eq(message)
+        expect(Message.report_create(text)).to eq(message)
+      end
+    end
+    context 'when create list not empty' do
+      it 'report create list correct' do
+        FactoryBot.create(:task,task_name:"create_task")
+        text = "Today-Report\n"
+        message = "#{text}\n本日追加されたタスク:new:\n\n>create_task"
+
+        expect(Message.report_create(text)).to eq(message)
+      end
     end
   end
 
   describe '#report_complete' do
-    it 'return report complete list correct' do
-      FactoryBot.create(:task,task_name:"complete_task",completed:true)
-      text = "Today-Report\n"
-      message = "#{text}\n\n本日完了したタスク:ok:\n\n>complete_task"
+    context 'when complete list empty' do
+      it 'message correct' do
+        text = "Today-Report\n"
+        message = "#{text}\n\n本日完了したタスク:ok:\n\n>本日完了したタスクはまだありません\n"
 
-      expect(Message.report_complete(text)).to eq(message)
+        expect(Message.report_complete(text)).to eq(message)
+      end
+    end
+
+    context 'when complete list not empty' do
+      it 'report complete list correct' do
+        FactoryBot.create(:task,task_name:"complete_task",completed:true)
+        text = "Today-Report\n"
+        message = "#{text}\n\n本日完了したタスク:ok:\n\n>complete_task"
+
+        expect(Message.report_complete(text)).to eq(message)
+      end
     end
   end
 
   describe '#report_incomplete' do
-    it 'return report incomplete list correct' do
-      FactoryBot.create(:task,task_name:"incomplete_task",completed:false)
-      text = "Today-Report\n"
-      message = "#{text}\n\n明日以降の残タスク:up:\n\n>incomplete_task"
+    context 'when incomplete list empty' do
+      it 'message correct' do
+        text = "Today-Report\n"
+        message = "#{text}\n\n明日以降の残タスク:up:\n\n>明日以降の残タスクはありません\n"
 
-      expect(Message.report_incomplete(text)).to eq(message)
+        expect(Message.report_incomplete(text)).to eq(message)
+      end
+    end
+
+    context 'when incomplete list not empty' do
+      it 'report incomplete list correct' do
+        FactoryBot.create(:task,task_name:"incomplete_task",completed:false)
+        text = "Today-Report\n"
+        message = "#{text}\n\n明日以降の残タスク:up:\n\n>incomplete_task"
+
+        expect(Message.report_incomplete(text)).to eq(message)
+      end
     end
   end
 
   describe '#delete_message' do
     context 'when not found task' do
-      it 'return not found designated message' do
+      it 'message correct' do
         text = "not found"
         message = {
           channel:CHANNEL_ID,
@@ -62,7 +94,7 @@ describe Message do
     end
 
     context 'when task is found' do
-      it 'return delete designated message' do
+      it 'delete designated task' do
         FactoryBot.create(:task,completed:false,task_name:"deleted")
         text = "deleted"
         message = {
@@ -77,7 +109,7 @@ describe Message do
 
   describe '#complete_message' do
     context 'when not found task' do
-      it 'return not found designated message' do
+      it 'message correct' do
         text = "not found"
         message = {
           channel:CHANNEL_ID,
@@ -89,7 +121,7 @@ describe Message do
     end
 
     context 'when already task is complete' do
-      it 'return already complete designated message' do
+      it 'already completed' do
         FactoryBot.create(:task,completed:true,task_name:"completed")
         text = "completed"
         message = {
@@ -102,7 +134,7 @@ describe Message do
     end
 
     context 'when already task is complete' do
-      it 'return already complete designated message' do
+      it 'change to completion' do
         FactoryBot.create(:task,completed:false,task_name:"complete")
         text = "complete"
         message = {
@@ -116,7 +148,7 @@ describe Message do
   end
 
   describe '#add_message' do
-    it 'return add message' do
+    it 'add message' do
       text = 'addアクション追加'
       message = {
         channel:CHANNEL_ID,
@@ -129,7 +161,7 @@ describe Message do
 
   describe '#show_result' do
     context 'when task empty' do
-      it 'return empty designated message' do
+      it 'task is not registered' do
         message = {
           channel:CHANNEL_ID,
           text:"タスクが登録されていません",
@@ -139,7 +171,7 @@ describe Message do
       end
     end
     context 'when task not empty' do
-      it 'return not empty designated message' do
+      it 'show reult correct' do
         FactoryBot.create(:task)
         message = {
           channel:CHANNEL_ID,
