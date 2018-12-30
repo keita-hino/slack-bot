@@ -12,21 +12,33 @@ class Message
   def self.report_create(message)
     create_list = Task.today_create_task
     message << "\n本日追加されたタスク:new:\n"
-    create_list.map{|v| message << "\n>" + v.task_name}
+    if create_list.blank?
+      message << "\n>本日登録されたタスクはまだありません\n"
+    else
+      create_list.map{|v| message << "\n>" + v.task_name}
+    end
     return message
   end
 
   def self.report_complete(message)
     complete_list = Task.today_completed_task
     message << "\n\n本日完了したタスク:ok:\n"
-    complete_list.map{|v| message << "\n>" + v.task_name}
+    if complete_list.blank?
+      message << "\n>本日完了したタスクはまだありません\n"
+    else
+      complete_list.map{|v| message << "\n>" + v.task_name}
+    end
     return message
   end
 
   def self.report_incomplete(message)
     incomplete_list = Task.incomplete_task
     message << "\n\n明日以降の残タスク:up:\n"
-    incomplete_list.map{|v| message << "\n>" + v.task_name}
+    if incomplete_list.blank?
+      message << "\n>明日以降の残タスクはありません\n"
+    else
+      incomplete_list.map{|v| message << "\n>" + v.task_name}
+    end
     return message
   end
 
