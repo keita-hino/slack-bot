@@ -86,7 +86,7 @@ describe Message do
         text = "not found"
         message = {
           channel:CHANNEL_ID,
-          text:"入力されたタスクが見つかりません:face_with_monocle:\n>>>" + text,
+          text:"入力されたタスクが見つかりません:face_with_monocle:\n>" + text,
           as_user:false
         }
         expect(Message.delete_message(text,CHANNEL_ID)).to eq(message)
@@ -99,7 +99,7 @@ describe Message do
         text = "deleted"
         message = {
           channel:CHANNEL_ID,
-          text:"入力されたタスクを削除しました:+1:\n>>>" + text,
+          text:"入力されたタスクを削除しました:+1:\n>" + text,
           as_user:false
         }
         expect(Message.delete_message(text,CHANNEL_ID)).to eq(message)
