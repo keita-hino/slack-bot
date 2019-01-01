@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 describe Message do
-  CHANNEL_ID = 'C999999'
-  USER_ID = 'U999999'
+  let(:channel_id) {'C999999'}
+  let(:user_id) {'U999999'}
 
   describe '#report_message' do
     it 'report message correct' do
@@ -10,11 +10,11 @@ describe Message do
       FactoryBot.create(:task,task_name:"incomplete_task",completed:false)
 
       message = message = {
-        channel:CHANNEL_ID,
+        channel:channel_id,
         text:"Today-Report\n\n本日追加されたタスク:new:\n\n>complete_task\n>incomplete_task\n\n本日完了したタスク:ok:\n\n>complete_task\n\n明日以降の残タスク:up:\n\n>incomplete_task",
         as_user:false
       }
-      expect(Message.report_message(CHANNEL_ID)).to eq(message)
+      expect(Message.report_message(channel_id)).to eq(message)
     end
   end
 
@@ -85,11 +85,11 @@ describe Message do
       it 'message correct' do
         text = "not found"
         message = {
-          channel:CHANNEL_ID,
+          channel:channel_id,
           text:"入力されたタスクが見つかりません:face_with_monocle:\n>" + text,
           as_user:false
         }
-        expect(Message.delete_message(text,CHANNEL_ID)).to eq(message)
+        expect(Message.delete_message(text,channel_id)).to eq(message)
       end
     end
 
@@ -98,11 +98,11 @@ describe Message do
         FactoryBot.create(:task,completed:false,task_name:"deleted")
         text = "deleted"
         message = {
-          channel:CHANNEL_ID,
+          channel:channel_id,
           text:"入力されたタスクを削除しました:+1:\n>" + text,
           as_user:false
         }
-        expect(Message.delete_message(text,CHANNEL_ID)).to eq(message)
+        expect(Message.delete_message(text,channel_id)).to eq(message)
       end
     end
   end
@@ -112,11 +112,11 @@ describe Message do
       it 'message correct' do
         text = "not found"
         message = {
-          channel:CHANNEL_ID,
+          channel:channel_id,
           text:"入力されたタスクが見つかりません:face_with_monocle:\n>>>" + text,
           as_user:false
         }
-        expect(Message.complete_message(text,CHANNEL_ID)).to eq(message)
+        expect(Message.complete_message(text,channel_id)).to eq(message)
       end
     end
 
@@ -125,11 +125,11 @@ describe Message do
         FactoryBot.create(:task,completed:true,task_name:"completed")
         text = "completed"
         message = {
-          channel:CHANNEL_ID,
+          channel:channel_id,
           text:"入力されたタスクのステータスはすでに「完了」になってます:man-gesturing-no:\n>>>" + text,
           as_user:false
         }
-        expect(Message.complete_message(text,CHANNEL_ID)).to eq(message)
+        expect(Message.complete_message(text,channel_id)).to eq(message)
       end
     end
 
@@ -138,11 +138,11 @@ describe Message do
         FactoryBot.create(:task,completed:false,task_name:"complete")
         text = "complete"
         message = {
-          channel:CHANNEL_ID,
+          channel:channel_id,
           text:"入力されたタスクのステータスを「完了」に変更しました:+1:\n>>>" + text,
           as_user:false
         }
-        expect(Message.complete_message(text,CHANNEL_ID)).to eq(message)
+        expect(Message.complete_message(text,channel_id)).to eq(message)
       end
     end
   end
@@ -151,11 +151,11 @@ describe Message do
     it 'add message' do
       text = 'addアクション追加'
       message = {
-        channel:CHANNEL_ID,
+        channel:channel_id,
         text:"下記のタスクを追加しました\n>>>" + text,
         as_user:false
       }
-      expect(Message.add_message(text,CHANNEL_ID)).to eq(message)
+      expect(Message.add_message(text,channel_id)).to eq(message)
     end
   end
 
@@ -163,22 +163,22 @@ describe Message do
     context 'when task empty' do
       it 'task is not registered' do
         message = {
-          channel:CHANNEL_ID,
+          channel:channel_id,
           text:"タスクが登録されていません",
           as_user:false
         }
-        expect(Message.show_result(USER_ID,CHANNEL_ID)).to eq(message)
+        expect(Message.show_result(user_id,channel_id)).to eq(message)
       end
     end
     context 'when task not empty' do
       it 'show reult correct' do
         FactoryBot.create(:task)
         message = {
-          channel:CHANNEL_ID,
+          channel:channel_id,
           text:"タスク一覧\n>・test",
           as_user:false
         }
-        expect(Message.show_result(USER_ID,CHANNEL_ID)).to eq(message)
+        expect(Message.show_result(user_id,channel_id)).to eq(message)
       end
     end
   end
@@ -187,22 +187,22 @@ describe Message do
     it 'is template correct' do
       text = "test"
       message = {
-        channel:CHANNEL_ID,
+        channel:channel_id,
         text: text,
         as_user: false
       }
-      expect(Message.template(CHANNEL_ID,text)).to eq(message)
+      expect(Message.template(channel_id,text)).to eq(message)
     end
   end
 
   describe '#help' do
     it 'is help message correct' do
       message = {
-        channel:CHANNEL_ID,
+        channel:channel_id,
         text: help_text,
         as_user: false
       }
-      expect(Message.help(CHANNEL_ID)).to eq(message)
+      expect(Message.help(channel_id)).to eq(message)
     end
   end
 
