@@ -148,14 +148,16 @@ describe Message do
   end
 
   describe '#add_message' do
-    it 'add message' do
-      text = 'addアクション追加'
-      message = {
-        channel:channel_id,
-        text:"下記のタスクを追加しました\n>>>" + text,
-        as_user:false
-      }
-      expect(Message.add_message(text,channel_id)).to eq(message)
+    context 'no option' do
+      it 'add message' do
+        text = 'addアクション追加'
+        message = {
+          channel:channel_id,
+          text:"下記のタスクを追加しました\n>>>" + text,
+          as_user:false
+        }
+        expect(Message.add_message(text,channel_id,user_id)).to eq(message)
+      end
     end
   end
 
