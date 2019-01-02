@@ -67,7 +67,22 @@ class Message
     Message.template(channel_id,message)
   end
 
-  def self.add_message(text,channel_id)
+  def self.add_message(text,channel_id,user_id)
+    due_date = ""
+    if text.include?("due:")
+      pat = /(due:)(.*)/
+      text =~ pat
+      due_date = $2
+      text.gsub!($1 + $2," ")
+    else
+      due_date = (Time.now.midnight + 1.day - 1)
+    end
+
+    Task.create(
+      user_id:user_id,
+      task_name:text,
+      due_date:due_date
+    )
     message = "下記のタスクを追加しました\n>>>" + text
     Message.template(channel_id,message)
   end
