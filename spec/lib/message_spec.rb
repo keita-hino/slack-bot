@@ -7,11 +7,11 @@ describe Message do
   describe '#report_message' do
     it 'report message correct' do
       FactoryBot.create(:task,task_name:"complete_task",completed:true)
-      FactoryBot.create(:task,task_name:"incomplete_task",completed:false)
+      FactoryBot.create(:task,task_name:"incomplete_task",completed:false,started:true)
 
       message = message = {
         channel:channel_id,
-        text:"Today-Report\n\n本日追加されたタスク:new:\n\n>complete_task\n>incomplete_task\n\n本日完了したタスク:ok:\n\n>complete_task\n\n残タスク:up:\n\n>incomplete_task",
+        text:"Today-Report\n\n本日追加されたタスク:new:\n\n>complete_task\n>incomplete_task\n\n本日完了したタスク:ok:\n\n>complete_task\n\n残タスク:up:\n\n>incomplete_task\n\n着手中のタスク:man-running:\n\n>incomplete_task",
         as_user:false
       }
       expect(Message.report_message(channel_id)).to eq(message)
@@ -76,6 +76,27 @@ describe Message do
         message = "#{text}\n\n残タスク:up:\n\n>incomplete_task"
 
         expect(Message.report_incomplete(text)).to eq(message)
+      end
+    end
+  end
+
+  describe '#report_task_started' do
+    context 'when task started list empty' do
+      it 'message correct' do
+        text = "Today-Report\n"
+        message = "#{text}\n\n着手中のタスク:man-running:\n\n>着手中のタスクはありません\n"
+
+        expect(Message.report_task_started(text)).to eq(message)
+      end
+    end
+
+    context 'when incomplete list not empty' do
+      it 'report task started list correct' do
+        FactoryBot.create(:task,task_name:"started_task",completed:false,started:true)
+        text = "Today-Report\n"
+        message = "#{text}\n\n着手中のタスク:man-running:\n\n>started_task"
+
+        expect(Message.report_task_started(text)).to eq(message)
       end
     end
   end

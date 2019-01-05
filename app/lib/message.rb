@@ -5,6 +5,7 @@ class Message
     message = Message.report_create(message)
     message = Message.report_complete(message)
     message = Message.report_incomplete(message)
+    message = Message.report_task_started(message)
 
     Message.template(channel_id,message)
   end
@@ -38,6 +39,17 @@ class Message
       message << "\n>残タスクはありません\n"
     else
       incomplete_list.map{|v| message << "\n>" + v.task_name}
+    end
+    return message
+  end
+
+  def self.report_task_started(message)
+    started_task_list = Task.started_task
+    message << "\n\n着手中のタスク:man-running:\n"
+    if started_task_list.blank?
+      message << "\n>着手中のタスクはありません\n"
+    else
+      started_task_list.map{|v| message << "\n>" + v.task_name}
     end
     return message
   end
