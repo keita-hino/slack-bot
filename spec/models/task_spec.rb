@@ -22,4 +22,11 @@ RSpec.describe Task, type: :model do
       expect(Task.incomplete_task.count).to eq(1)
     end
   end
+
+  describe '#started_task' do
+    it 'return started task list' do
+      FactoryBot.create(:task,created_at:today,completed:false,started:true)
+      expect(Task.started_task.count).to eq(1)
+    end
+  end
 end

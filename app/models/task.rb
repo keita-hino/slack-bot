@@ -11,4 +11,8 @@ class Task < ApplicationRecord
     Task.where(completed:false)
   end
 
+  def self.started_task
+    Task.where(started:true)
+  end
+
 end
