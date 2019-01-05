@@ -1,4 +1,14 @@
 class Message
+  def self.modify_message(text,channel_id)
+    result = Task.modify_task(text)
+    if result
+      message = "「完了」に修正しました"
+    else
+      message = "タスクが見つかりませんでした"
+    end
+    Message.template(channel_id,message)
+  end
+
   def self.report_message(channel_id)
     message = "Today-Report\n"
 
