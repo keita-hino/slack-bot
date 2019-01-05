@@ -92,7 +92,7 @@ class Message
 
     Task.create(
       user_id:user_id,
-      task_name:text,
+      task_name:text.strip,
       due_date:due_date
     )
     message = "下記のタスクを追加しました\n>>>" + text

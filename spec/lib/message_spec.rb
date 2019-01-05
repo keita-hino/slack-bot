@@ -191,6 +191,16 @@ describe Message do
         Message.add_message(text,channel_id,user_id)
         expect(Task.pluck(:due_date)[0]).to eq('2018-09-09 00:00:00.000000000 +0000')
       end
+      it 'task_name no space' do
+        text = 'addアクション追加 due:20180909'
+        message = {
+          channel:channel_id,
+          text:"下記のタスクを追加しました\n>>>" + text,
+          as_user:false
+        }
+        Message.add_message(text,channel_id,user_id)
+        expect(Task.first.task_name).to eq('addアクション追加')
+      end
     end
   end
 
