@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   post '/show' => 'slackbot#show'
   post '/report' => 'slackbot#report'
   post '/help' => 'slackbot#help'
+  post '/modify' => 'slackbot#modify'
 end
