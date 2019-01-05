@@ -33,9 +33,9 @@ class Message
 
   def self.report_incomplete(message)
     incomplete_list = Task.incomplete_task
-    message << "\n\n明日以降の残タスク:up:\n"
+    message << "\n\n着手中のタスク:up:\n"
     if incomplete_list.blank?
-      message << "\n>明日以降の残タスクはありません\n"
+      message << "\n>着手中のタスクはありません\n"
     else
       incomplete_list.map{|v| message << "\n>" + v.task_name}
     end

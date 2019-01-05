@@ -11,7 +11,7 @@ describe Message do
 
       message = message = {
         channel:channel_id,
-        text:"Today-Report\n\n本日追加されたタスク:new:\n\n>complete_task\n>incomplete_task\n\n本日完了したタスク:ok:\n\n>complete_task\n\n明日以降の残タスク:up:\n\n>incomplete_task",
+        text:"Today-Report\n\n本日追加されたタスク:new:\n\n>complete_task\n>incomplete_task\n\n本日完了したタスク:ok:\n\n>complete_task\n\n着手中のタスク:up:\n\n>incomplete_task",
         as_user:false
       }
       expect(Message.report_message(channel_id)).to eq(message)
@@ -63,7 +63,7 @@ describe Message do
     context 'when incomplete list empty' do
       it 'message correct' do
         text = "Today-Report\n"
-        message = "#{text}\n\n明日以降の残タスク:up:\n\n>明日以降の残タスクはありません\n"
+        message = "#{text}\n\n着手中のタスク:up:\n\n>着手中のタスクはありません\n"
 
         expect(Message.report_incomplete(text)).to eq(message)
       end
@@ -73,7 +73,7 @@ describe Message do
       it 'report incomplete list correct' do
         FactoryBot.create(:task,task_name:"incomplete_task",completed:false)
         text = "Today-Report\n"
-        message = "#{text}\n\n明日以降の残タスク:up:\n\n>incomplete_task"
+        message = "#{text}\n\n着手中のタスク:up:\n\n>incomplete_task"
 
         expect(Message.report_incomplete(text)).to eq(message)
       end
