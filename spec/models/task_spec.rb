@@ -38,4 +38,13 @@ RSpec.describe Task, type: :model do
       end
     end
   end
+  describe '#modify_task' do
+    context 'when started option' do
+      it 'started value true' do
+        FactoryBot.create(:task,task_name:"test",started:false)
+        text = 'test started:'
+        expect(Task.modify_task(text)).to be_truthy
+      end
+    end
+  end
 end
