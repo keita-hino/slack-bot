@@ -12,7 +12,7 @@ class Task < ApplicationRecord
   end
 
   def self.started_task
-    Task.where(started:true)
+    Task.where(completed:false,started:true)
   end
 
 end

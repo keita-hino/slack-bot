@@ -24,9 +24,18 @@ RSpec.describe Task, type: :model do
   end
 
   describe '#started_task' do
-    it 'return started task list' do
-      FactoryBot.create(:task,created_at:today,completed:false,started:true)
-      expect(Task.started_task.count).to eq(1)
+    context 'when started value is true and completed value is false' do
+      it 'return 1' do
+        FactoryBot.create(:task,created_at:today,completed:false,started:true)
+        expect(Task.started_task.count).to eq(1)
+      end
+    end
+
+    context 'when started value is true and completed value is true' do
+      it 'return 0' do
+        FactoryBot.create(:task,created_at:today,completed:true,started:true)
+        expect(Task.started_task.count).to eq(0)
+      end
     end
   end
 end
