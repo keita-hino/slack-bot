@@ -15,4 +15,19 @@ class Task < ApplicationRecord
     Task.where(completed:false,started:true)
   end
 
+  def self.modify_task(text)
+    if text.include?("started:")
+      pat = /(.*)(started:)/
+      text =~ pat
+      puts $1.strip
+      t = Task.where(task_name:$1.strip)
+      if t[0]
+        t[0].started = true
+        t[0].save
+      else
+        return false
+      end
+    end
+  end
+
 end
