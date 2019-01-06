@@ -4,6 +4,35 @@ describe Message do
   let(:channel_id) {'C999999'}
   let(:user_id) {'U999999'}
 
+  describe '#modify_message' do
+    context 'when started option attached' do
+      it 'return complte message' do
+        FactoryBot.create(:task,task_name:"test",started:false)
+        text = 'test started:'
+        message = message = {
+          channel: "C999999",
+          text: "「完了」に修正しました",
+          as_user: false
+        }
+        expect(Message.modify_message(text,channel_id)).to eq(message)
+      end
+    end
+
+    context 'when started option not attached' do
+      it 'return not complete message' do
+        FactoryBot.create(:task,task_name:"test",started:false)
+        text = 'test'
+        message = message = {
+          channel: "C999999",
+          text: "タスクが見つかりませんでした",
+          as_user: false
+        }
+        expect(Message.modify_message(text,channel_id)).to eq(message)
+      end
+    end
+
+  end
+
   describe '#report_message' do
     it 'report message correct' do
       FactoryBot.create(:task,task_name:"complete_task",completed:true)
