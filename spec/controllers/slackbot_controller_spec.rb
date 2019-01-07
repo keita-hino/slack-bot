@@ -25,6 +25,26 @@ RSpec.describe SlackbotController, type: :controller do
     end
   end
 
+  describe '#modify' do
+    it 'is task modify correct' do
+      VCR.use_cassette("controller/modify/post_success") do
+        post :modify,params: {
+          token:        'token',
+          team_id:      'team_id',
+          team_domain:  'team_domain',
+          channel_id:   'test',
+          channel_name: 'channel_name',
+          user_id:      'C0XXXX',
+          user_name:    'user_name',
+          command:      '/task_complete',
+          text:         'test',
+          response_url: 'https://example.com'
+        }
+      end
+      expect(response).to have_http_status(:success)
+    end
+  end
+
   describe '#complete' do
     it 'is task comcomplete correct' do
       VCR.use_cassette("controller/complete/post_success") do
