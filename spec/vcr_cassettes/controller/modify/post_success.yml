@@ -1,0 +1,70 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://slack.com/api/chat.postMessage
+    body:
+      encoding: UTF-8
+      string: as_user=false&channel=test&text=%E3%82%BF%E3%82%B9%E3%82%AF%E3%81%8C%E8%A6%8B%E3%81%A4%E3%81%8B%E3%82%8A%E3%81%BE%E3%81%9B%E3%82%93%E3%81%A7%E3%81%97%E3%81%9F&token=<SLACK_BOT_USER_TOKEN>
+    headers:
+      Accept:
+      - application/json; charset=utf-8
+      User-Agent:
+      - Slack Ruby Client/0.13.1
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '189'
+      Connection:
+      - keep-alive
+      Date:
+      - Mon, 07 Jan 2019 11:55:58 GMT
+      Server:
+      - Apache
+      Expires:
+      - Mon, 26 Jul 1997 05:00:00 GMT
+      X-Content-Type-Options:
+      - nosniff
+      Cache-Control:
+      - private, no-cache, no-store, must-revalidate
+      X-Oauth-Scopes:
+      - identify,commands,channels:history,channels:write,chat:write:bot
+      Pragma:
+      - no-cache
+      X-Accepted-Oauth-Scopes:
+      - chat:write:bot
+      X-Xss-Protection:
+      - '0'
+      X-Slack-Req-Id:
+      - 892b0d2d-3318-4bc9-bc66-facf3398f735
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Referrer-Policy:
+      - no-referrer
+      Vary:
+      - Accept-Encoding
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Via:
+      - haproxy-www-50ho
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 e4404fd3b1d2ac38d3124fbc6bbedc8b.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - "-Ldtf5EY1cmVEl1XavEvSW5RJmkuUW3CfXmqHC9q3ACSRwljj2rsFA=="
+    body:
+      encoding: ASCII-8BIT
+      string: '{"ok":true,"channel":"test","ts":"1546862158.000100","message":{"type":"message","subtype":"bot_message","text":"\u30bf\u30b9\u30af\u304c\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f","ts":"1546862158.000100","username":"slack-bot","bot_id":"BF1B2C91Q"}}'
+    http_version:
+  recorded_at: Mon, 07 Jan 2019 11:55:58 GMT
+recorded_with: VCR 4.0.0
