@@ -155,6 +155,20 @@ describe Message do
         expect(Message.delete_message(text,channel_id)).to eq(message)
       end
     end
+
+    context 'when there are multiple tasks of the same name' do
+      it 'message correct' do
+        FactoryBot.create(:task,completed:false,task_name:"deleted")
+        FactoryBot.create(:task,completed:false,task_name:"deleted")
+        text = "deleted"
+        message = {
+          channel:channel_id,
+          text:"入力されたタスクを削除しました:+1:\n>" + text,
+          as_user:false
+        }
+        expect(Message.delete_message(text,channel_id)).to eq(message)
+      end
+    end
   end
 
   describe '#complete_message' do

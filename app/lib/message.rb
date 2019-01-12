@@ -69,7 +69,7 @@ class Message
     case result
     when 0
       message = "入力されたタスクが見つかりません:face_with_monocle:\n>#{text}"
-    when 1
+    else
       message = "入力されたタスクを削除しました:+1:\n>#{text}"
     end
     Message.template(channel_id,message)
