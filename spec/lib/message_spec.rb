@@ -250,23 +250,39 @@ describe Message do
   describe '#show_result' do
     context 'when task empty' do
       it 'task is not registered' do
+        text = "range:week"
         message = {
           channel:channel_id,
           text:"タスクが登録されていません",
           as_user:false
         }
-        expect(Message.show_result(user_id,channel_id)).to eq(message)
+        expect(Message.show_result(text,user_id,channel_id)).to eq(message)
       end
     end
     context 'when task not empty' do
       it 'show reult correct' do
         FactoryBot.create(:task)
+        text = "range:week"
         message = {
           channel:channel_id,
           text:"タスク一覧\n>・test",
           as_user:false
         }
-        expect(Message.show_result(user_id,channel_id)).to eq(message)
+        expect(Message.show_result(text,user_id,channel_id)).to eq(message)
+      end
+    end
+    context 'when attached range option' do
+      it 'return task for range' do
+        FactoryBot.create(:task,task_name:"today_task",created_at:Date.today)
+        FactoryBot.create(:task,task_name:"not_today",created_at:Date.today - 1)
+        text = 'range:today'
+        message = {
+          channel:channel_id,
+          text: "タスク一覧\n>・today_task",
+          as_user: false
+        }
+        expect(Message.show_result(text,user_id,channel_id)).to eq(message)
+
       end
     end
   end
