@@ -15,7 +15,7 @@ class Task < ApplicationRecord
     Task.where(completed:false,started:true)
   end
 
-  def self.show_task(text,user_id)
+  def self.show_task(text = 'not_task',user_id)
     case text
     when 'range:today'
       Task.where(user_id:user_id,created_at:Time.now.midnight..(Time.now.midnight + 1.day - 1))
