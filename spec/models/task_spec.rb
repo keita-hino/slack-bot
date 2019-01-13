@@ -2,10 +2,30 @@ require 'rails_helper'
 
 RSpec.describe Task, type: :model do
   let(:today) {Time.now.midnight}
+  let(:user_id) {'U999999'}
   describe '#today_create_task' do
     it 'return create task list' do
       FactoryBot.create(:task,created_at:today)
       expect(Task.today_create_task.count).to eq(1)
+    end
+  end
+
+  describe '#show_task' do
+    context 'when attached range option' do
+      it 'return today task' do
+        FactoryBot.create(:task,task_name:"today_task",created_at:Date.today)
+        FactoryBot.create(:task,task_name:"not_today",created_at:Date.today - 1)
+        text = 'range:today'
+        expect(Task.show_task(text,user_id).count).to eq(1)
+      end
+    end
+
+    context 'when not option' do
+      it 'return all task' do
+        FactoryBot.create(:task,task_name:"today_task",created_at:Date.today)
+        FactoryBot.create(:task,task_name:"not_today",created_at:Date.today - 1)
+        expect(Task.show_task(user_id).count).to eq(2)
+      end
     end
   end
 
@@ -47,7 +67,7 @@ RSpec.describe Task, type: :model do
         expect(Task.modify_task(text)).to be_truthy
       end
     end
-    
+
     context 'when started option not attached' do
       it 'started value false' do
         FactoryBot.create(:task,task_name:"test",started:false)
