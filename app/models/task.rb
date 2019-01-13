@@ -15,11 +15,19 @@ class Task < ApplicationRecord
     Task.where(completed:false,started:true)
   end
 
+  def self.show_task(text,user_id)
+    case text
+    when 'range:today'
+      Task.where(user_id:user_id,created_at:Time.now.midnight..(Time.now.midnight + 1.day - 1))
+    else
+      Task.where(user_id:user_id)
+    end
+  end
+
   def self.modify_task(text)
     if text.include?("started:")
       pat = /(.*)(started:)/
       text =~ pat
-      puts $1.strip
       t = Task.where(task_name:$1.strip)
       if t[0]
         t[0].started = true
