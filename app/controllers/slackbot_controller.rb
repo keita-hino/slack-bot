@@ -24,7 +24,7 @@ class SlackbotController < ApplicationController
   end
 
   def show
-    message = Message.show_result(params['user_id'],params['channel_id'])
+    message = Message.show_result(params['text'],params['user_id'],params['channel_id'])
     @client.chat_postMessage(message)
     head :ok
   end
