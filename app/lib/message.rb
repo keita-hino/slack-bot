@@ -109,8 +109,8 @@ class Message
     Message.template(channel_id,message)
   end
 
-  def self.show_result(user_id,channel_id)
-    s = Task.where(user_id:user_id)
+  def self.show_result(text = "not_option",user_id,channel_id)
+    s = Task.show_task(text,user_id)
     if s[0].blank?
       message = Message.template(channel_id,"タスクが登録されていません")
     else
