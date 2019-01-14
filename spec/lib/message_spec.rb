@@ -260,7 +260,7 @@ describe Message do
       end
     end
     context 'when task not empty' do
-      it 'show reult correct' do
+      it 'show result correct' do
         FactoryBot.create(:task)
         text = "range:week"
         message = {
@@ -270,7 +270,21 @@ describe Message do
         }
         expect(Message.show_result(text,user_id,channel_id)).to eq(message)
       end
+
+      it 'show result order' do
+        FactoryBot.create(:task,task_name:"task2",created_at:Date.today)
+        FactoryBot.create(:task,task_name:"task1",created_at:Date.today - 1)
+        text = ''
+        message = {
+          channel:channel_id,
+          text: "タスク一覧\n>・task1\n>・task2",
+          as_user: false
+        }
+
+        expect(Message.show_result(text,user_id,channel_id)).to eq(message)
+      end
     end
+
     context 'when attached range option' do
       it 'return task for range' do
         FactoryBot.create(:task,task_name:"today_task",created_at:Date.today)
@@ -281,8 +295,8 @@ describe Message do
           text: "タスク一覧\n>・today_task",
           as_user: false
         }
-        expect(Message.show_result(text,user_id,channel_id)).to eq(message)
 
+        expect(Message.show_result(text,user_id,channel_id)).to eq(message)
       end
     end
   end
