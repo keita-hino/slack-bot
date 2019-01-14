@@ -18,9 +18,9 @@ class Task < ApplicationRecord
   def self.show_task(text = 'not_task',user_id)
     case text
     when 'range:today'
-      Task.where(user_id:user_id,created_at:Time.now.midnight..(Time.now.midnight + 1.day - 1))
+      Task.where(user_id:user_id,created_at:Time.now.midnight..(Time.now.midnight + 1.day - 1)).order(:created_at)
     else
-      Task.where(user_id:user_id)
+      Task.where(user_id:user_id).order(:created_at)
     end
   end
 
