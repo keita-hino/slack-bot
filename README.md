@@ -1,25 +1,26 @@
 # [![Build Status](https://travis-ci.org/keita-hino/slack-bot.svg?branch=master)](https://travis-ci.org/keita-hino/slack-bot)
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+このslackbotはタスク管理用です。  
 
-Things you may want to cover:
+スラッシュコマンド一覧   
+/task_add タスク名 due: 21:00   
+  →タスクを追加する。dueオプションをつけると期限を設定することができる。   
 
-* Ruby version
+/task_remove タスク名   
+  →タスクを削除する。    
 
-* System dependencies
+/task_complete タスク名   
+  →タスクのステータスを「完了」にする。   
 
-* Configuration
+/task_show タスク名 range:today   
+  →タスクの一覧を表示する。rangeオプションを指定することで任意の範囲のタスク一覧を取得することができる。    
 
-* Database creation
+/task_report    
+  →完了したタスクなどから、日報を作成する。   
 
-* Database initialization
+/task_modify    
+  →タスクのステータスを変更する。    
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+/task_help    
+  →各種コマンドの説明を表示する。    
