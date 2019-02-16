@@ -5,8 +5,8 @@ describe Message do
   let(:user_id) {'U999999'}
 
   describe '#modify_message' do
-    context 'when started option attached' do
-      it 'return complte message' do
+    context ':startオプション指定時' do
+      it 'タスク修正完了のメッセージを返す' do
         FactoryBot.create(:task,task_name:"test",started:false)
         text = 'test started:'
         message = message = {
@@ -18,8 +18,8 @@ describe Message do
       end
     end
 
-    context 'when started option not attached' do
-      it 'return not complete message' do
+    context 'オプション指定がない時' do
+      it 'タスク修正失敗のメッセージを返す' do
         FactoryBot.create(:task,task_name:"test",started:false)
         text = 'test'
         message = message = {
@@ -34,7 +34,7 @@ describe Message do
   end
 
   describe '#report_message' do
-    it 'report message correct' do
+    it '日報用のメッセージを返す' do
       FactoryBot.create(:task,task_name:"complete_task",completed:true)
       FactoryBot.create(:task,task_name:"incomplete_task",completed:false,started:true)
 
@@ -48,16 +48,16 @@ describe Message do
   end
 
   describe '#report_create' do
-    context 'when create list empty' do
-      it 'message correct' do
+    context '作られたタスクが存在しない時' do
+      it 'タスク未作成のメッセージを返す' do
         text = "Today-Report\n"
         message = "#{text}\n本日追加されたタスク:new:\n\n>本日登録されたタスクはまだありません\n"
 
         expect(Message.report_create(text)).to eq(message)
       end
     end
-    context 'when create list not empty' do
-      it 'report create list correct' do
+    context '作られたタスクが存在する時' do
+      it '作成したタスクのリストを返す' do
         FactoryBot.create(:task,task_name:"create_task")
         text = "Today-Report\n"
         message = "#{text}\n本日追加されたタスク:new:\n\n>create_task"
@@ -68,8 +68,8 @@ describe Message do
   end
 
   describe '#report_complete' do
-    context 'when complete list empty' do
-      it 'message correct' do
+    context '完了したタスクが存在しない時' do
+      it 'タスク未完了のメッセージを返す' do
         text = "Today-Report\n"
         message = "#{text}\n\n本日完了したタスク:ok:\n\n>本日完了したタスクはまだありません\n"
 
@@ -77,8 +77,8 @@ describe Message do
       end
     end
 
-    context 'when complete list not empty' do
-      it 'report complete list correct' do
+    context '完了したタスクが存在する時' do
+      it '完了したタスクのリストを返す' do
         FactoryBot.create(:task,task_name:"complete_task",completed:true)
         text = "Today-Report\n"
         message = "#{text}\n\n本日完了したタスク:ok:\n\n>complete_task"
@@ -89,8 +89,8 @@ describe Message do
   end
 
   describe '#report_incomplete' do
-    context 'when incomplete list empty' do
-      it 'message correct' do
+    context '期限当日で未完了のタスクがない時' do
+      it 'タスクがない旨のメッセージを返す' do
         text = "Today-Report\n"
         message = "#{text}\n\n残タスク:up:\n\n>残タスクはありません\n"
 
@@ -98,8 +98,8 @@ describe Message do
       end
     end
 
-    context 'when incomplete list not empty' do
-      it 'report incomplete list correct' do
+    context '着手中のタスクが存在する時' do
+      it '未完了のタスクを返す' do
         FactoryBot.create(:task,task_name:"incomplete_task",completed:false)
         text = "Today-Report\n"
         message = "#{text}\n\n残タスク:up:\n\n>incomplete_task"
@@ -110,8 +110,8 @@ describe Message do
   end
 
   describe '#report_task_started' do
-    context 'when task started list empty' do
-      it 'message correct' do
+    context '着手中のタスクがない時' do
+      it 'タスクがないとき用のメッセージを返す' do
         text = "Today-Report\n"
         message = "#{text}\n\n着手中のタスク:man-running:\n\n>着手中のタスクはありません\n"
 
@@ -119,8 +119,8 @@ describe Message do
       end
     end
 
-    context 'when incomplete list not empty' do
-      it 'report task started list correct' do
+    context '着手中のタスクが存在する時' do
+      it '着手中のタスクを返す' do
         FactoryBot.create(:task,task_name:"started_task",completed:false,started:true)
         text = "Today-Report\n"
         message = "#{text}\n\n着手中のタスク:man-running:\n\n>started_task"
@@ -131,8 +131,8 @@ describe Message do
   end
 
   describe '#delete_message' do
-    context 'when not found task' do
-      it 'message correct' do
+    context 'タスクが存在しない時' do
+      it 'タスクがないとき用のメッセージを返す' do
         text = "not found"
         message = {
           channel:channel_id,
@@ -143,8 +143,8 @@ describe Message do
       end
     end
 
-    context 'when task is found' do
-      it 'delete designated task' do
+    context 'タスクが存在する時' do
+      it '削除完了のメッセージを返す' do
         FactoryBot.create(:task,completed:false,task_name:"deleted")
         text = "deleted"
         message = {
@@ -156,8 +156,8 @@ describe Message do
       end
     end
 
-    context 'when there are multiple tasks of the same name' do
-      it 'message correct' do
+    context '複数タスクが存在する時' do
+      it '削除完了のメッセージを返す' do
         FactoryBot.create(:task,completed:false,task_name:"deleted")
         FactoryBot.create(:task,completed:false,task_name:"deleted")
         text = "deleted"
@@ -172,8 +172,8 @@ describe Message do
   end
 
   describe '#complete_message' do
-    context 'when not found task' do
-      it 'message correct' do
+    context 'タスクが存在しない時' do
+      it 'タスクがないとき用のメッセージを返す' do
         text = "not found"
         message = {
           channel:channel_id,
@@ -184,8 +184,8 @@ describe Message do
       end
     end
 
-    context 'when already task is complete' do
-      it 'already completed' do
+    context 'タスクがすでに完了になっている時' do
+      it 'すでに完了になっている旨のメッセージを返す' do
         FactoryBot.create(:task,completed:true,task_name:"completed")
         text = "completed"
         message = {
@@ -197,8 +197,8 @@ describe Message do
       end
     end
 
-    context 'when already task is complete' do
-      it 'change to completion' do
+    context 'タスクが未完了の時' do
+      it '完了メッセージを返す' do
         FactoryBot.create(:task,completed:false,task_name:"complete")
         text = "complete"
         message = {
@@ -212,8 +212,8 @@ describe Message do
   end
 
   describe '#add_message' do
-    context 'no option' do
-      it 'add message' do
+    context 'オプションがない時' do
+      it 'タスクを追加' do
         text = 'addアクション追加'
         message = {
           channel:channel_id,
@@ -223,8 +223,8 @@ describe Message do
         expect(Message.add_message(text,channel_id,user_id)).to eq(message)
       end
     end
-    context 'attach option' do
-      it 'set due_date' do
+    context 'オプションがある時' do
+      it 'Due Dateとタスク情報を追加' do
         text = 'addアクション追加 due:20180909'
         message = {
           channel:channel_id,
@@ -234,7 +234,7 @@ describe Message do
         Message.add_message(text,channel_id,user_id)
         expect(Task.pluck(:due_date)[0]).to eq('2018-09-09 00:00:00.000000000 +0000')
       end
-      it 'task_name no space' do
+      it 'タスク名の後ろに空白が入っていないこと' do
         text = 'addアクション追加 due:20180909'
         message = {
           channel:channel_id,
@@ -248,8 +248,8 @@ describe Message do
   end
 
   describe '#show_result' do
-    context 'when task empty' do
-      it 'task is not registered' do
+    context 'タスクがない時' do
+      it 'タスクがないとき用のメッセージを返す' do
         text = "range:week"
         message = {
           channel:channel_id,
@@ -259,8 +259,8 @@ describe Message do
         expect(Message.show_result(text,user_id,channel_id)).to eq(message)
       end
     end
-    context 'when task not empty' do
-      it 'show result correct' do
+    context 'タスクがある時' do
+      it 'タスク情報を返す' do
         FactoryBot.create(:task)
         text = "range:week"
         message = {
@@ -271,7 +271,7 @@ describe Message do
         expect(Message.show_result(text,user_id,channel_id)).to eq(message)
       end
 
-      it 'show result order' do
+      it 'タスク情報を昇順で返す' do
         FactoryBot.create(:task,task_name:"task2",created_at:Date.today)
         FactoryBot.create(:task,task_name:"task1",created_at:Date.today - 1)
         text = ''
@@ -285,8 +285,8 @@ describe Message do
       end
     end
 
-    context 'when attached range option' do
-      it 'return task for range' do
+    context ':rangeオプションがついてる時' do
+      it '指定された範囲のタスク情報を返す' do
         FactoryBot.create(:task,task_name:"today_task",created_at:Date.today)
         FactoryBot.create(:task,task_name:"not_today",created_at:Date.today - 1)
         text = 'range:today'
@@ -302,7 +302,7 @@ describe Message do
   end
 
   describe '#template' do
-    it 'is template correct' do
+    it 'テンプレートを返す' do
       text = "test"
       message = {
         channel:channel_id,
@@ -314,7 +314,7 @@ describe Message do
   end
 
   describe '#help' do
-    it 'is help message correct' do
+    it 'ヘルプメッセージを返す' do
       message = {
         channel:channel_id,
         text: help_text,

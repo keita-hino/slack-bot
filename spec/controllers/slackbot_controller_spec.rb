@@ -5,8 +5,8 @@ RSpec.describe SlackbotController, type: :controller do
     FactoryBot.create(:task)
   end
 
-  describe '#add' do
-    it 'is task add correct' do
+  describe 'POST#add' do
+    it 'successを返す' do
       VCR.use_cassette("controller/add/post_success") do
         post :add,params: {
           token:        'token',
@@ -25,8 +25,8 @@ RSpec.describe SlackbotController, type: :controller do
     end
   end
 
-  describe '#modify' do
-    it 'is task modify correct' do
+  describe 'POST#modify' do
+    it 'successを返す' do
       VCR.use_cassette("controller/modify/post_success") do
         post :modify,params: {
           token:        'token',
@@ -45,8 +45,8 @@ RSpec.describe SlackbotController, type: :controller do
     end
   end
 
-  describe '#complete' do
-    it 'is task comcomplete correct' do
+  describe 'POST#complete' do
+    it 'successを返す' do
       VCR.use_cassette("controller/complete/post_success") do
         post :complete,params: {
           token:        'token',
@@ -65,8 +65,8 @@ RSpec.describe SlackbotController, type: :controller do
     end
   end
 
-  describe '#report' do
-    it 'is task report correct' do
+  describe 'POST#report' do
+    it 'successを返す' do
       VCR.use_cassette("controller/report/post_success") do
         post :report,params: {
           token:        'token',
@@ -85,8 +85,8 @@ RSpec.describe SlackbotController, type: :controller do
     end
   end
 
-  describe '#delete' do
-    it 'is task delete correct' do
+  describe 'POST#delete' do
+    it 'successを返す' do
       VCR.use_cassette("controller/delete/post_success") do
         post :delete,params: {
           token:        'token',
@@ -105,8 +105,8 @@ RSpec.describe SlackbotController, type: :controller do
     end
   end
 
-  describe '#show' do
-    it 'is task show correct' do
+  describe 'POST#show' do
+    it 'successを返す' do
       VCR.use_cassette("controller/show/post_success") do
         post :show,params: {
           token:        'token',

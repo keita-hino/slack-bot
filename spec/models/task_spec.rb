@@ -11,8 +11,8 @@ RSpec.describe Task, type: :model do
   end
 
   describe '#show_task' do
-    context 'when attached range option' do
-      it 'return today task' do
+    context ':rangeオプションがついてる時' do
+      it 'その日に作成されたタスクを返す' do
         FactoryBot.create(:task,task_name:"today_task",created_at:Date.today)
         FactoryBot.create(:task,task_name:"not_today",created_at:Date.today - 1)
         text = 'range:today'
@@ -20,8 +20,8 @@ RSpec.describe Task, type: :model do
       end
     end
 
-    context 'when not option' do
-      it 'return all task' do
+    context 'オプションがない時' do
+      it '全てのタスクを返す' do
         FactoryBot.create(:task,task_name:"today_task",created_at:Date.today)
         FactoryBot.create(:task,task_name:"not_today",created_at:Date.today - 1)
         expect(Task.show_task(user_id).count).to eq(2)
@@ -30,22 +30,22 @@ RSpec.describe Task, type: :model do
   end
 
   describe '#today_completed_task' do
-    it 'return complete task list' do
+    it 'その日に完了したタスクを返す' do
       FactoryBot.create(:task,updated_at:today,completed:true)
       expect(Task.today_completed_task.count).to eq(1)
     end
   end
 
   describe '#incomplete_task' do
-    it 'return incomplete task list' do
+    it '期限当日のタスクを返す' do
       FactoryBot.create(:task,created_at:today,completed:false)
       expect(Task.incomplete_task.count).to eq(1)
     end
   end
 
   describe '#started_task' do
-    context 'when started value is true and completed value is false' do
-      it 'return 1' do
+    context 'タスクが未着手かつ、未完了の時' do
+      it '1件を返す' do
         FactoryBot.create(:task,created_at:today,completed:false,started:true)
         expect(Task.started_task.count).to eq(1)
       end
