@@ -1,4 +1,5 @@
 class Task < ApplicationRecord
+  acts_as_paranoid
   def self.today_create_task
     Task.where(created_at: Time.now.midnight..(Time.now.midnight + 1.day - 1))
   end
