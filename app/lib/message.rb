@@ -65,9 +65,8 @@ class Message
   end
 
   def self.delete_message(text,channel_id)
-    result = Task.where(task_name:text).delete_all
-    case result
-    when 0
+    result = Task.where(task_name:text).destroy_all
+    if result.empty?
       message = "入力されたタスクが見つかりません:face_with_monocle:\n>#{text}"
     else
       message = "入力されたタスクを削除しました:+1:\n>#{text}"
