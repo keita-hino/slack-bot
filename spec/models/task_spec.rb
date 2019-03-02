@@ -4,7 +4,7 @@ RSpec.describe Task, type: :model do
   let(:today) {Time.now.midnight}
   let(:user_id) {'U999999'}
   describe '#today_create_task' do
-    it 'return create task list' do
+    it 'タスクリストを作成して返す' do
       FactoryBot.create(:task,created_at:today)
       expect(Task.today_create_task.count).to eq(1)
     end
@@ -51,8 +51,8 @@ RSpec.describe Task, type: :model do
       end
     end
 
-    context 'when started value is true and completed value is true' do
-      it 'return 0' do
+    context '着手済みかつ、完了しているタスクだった場合' do
+      it '0を返す' do
         FactoryBot.create(:task,created_at:today,completed:true,started:true)
         expect(Task.started_task.count).to eq(0)
       end
@@ -60,16 +60,16 @@ RSpec.describe Task, type: :model do
   end
 
   describe '#modify_task' do
-    context 'when started option attached' do
-      it 'started value true' do
+    context 'startedオプションが付与されている場合' do
+      it '着手中に変える' do
         FactoryBot.create(:task,task_name:"test",started:false)
         text = 'test started:'
         expect(Task.modify_task(text)).to be_truthy
       end
     end
 
-    context 'when started option not attached' do
-      it 'started value false' do
+    context 'オプションが付与されていない場合' do
+      it '未着手に変える' do
         FactoryBot.create(:task,task_name:"test",started:false)
         text = 'test'
         expect(Task.modify_task(text)).to be_falsey
