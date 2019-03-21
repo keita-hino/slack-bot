@@ -14,9 +14,9 @@
       <% @tasks.each do |task| %>
         <tr>
           <td><%= task.task_name %></td>
-          <td><%= task.completed %></td>
-          <td><%= task.due_date %></td>
-          <td><%= task.updated_at %></td>
+          <td><%= complete(task.completed) %></td>
+          <td><%= show_dat(task.due_date) %></td>
+          <td><%= show_dat(task.updated_at) %></td>
         </tr>
       <% end %>
     </table>
