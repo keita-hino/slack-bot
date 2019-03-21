@@ -1,0 +1,23 @@
+<h1>タスク一覧</h1>
+<div class="row">
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th>タスク名</th>
+        <th>ステータス</th>
+        <th>期限</th>
+        <th>最終更新日</th>
+      </tr>
+         </thead>
+      <% @tasks.each do |task| %>
+      <tr>
+        <td><%= task.task_name %></td>
+        <td><%= task.completed %></td>
+        <td><%= task.due_date %></td>
+        <td><%= task.updated_at %></td>
+      </tr>
+      <% end %>
+    </table>
+    </div>
+</div>
