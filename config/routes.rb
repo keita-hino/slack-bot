@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'task/index'
+  get 'tasks/index'
   post '/add' => 'slackbot#add'
   post '/complete' => 'slackbot#complete'
   post '/delete' => 'slackbot#delete'
