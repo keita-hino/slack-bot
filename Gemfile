@@ -15,6 +15,8 @@ gem 'puma', '~> 3.11'
 gem 'paranoia'
 gem 'bootstrap-sass', '3.4.1'
 gem 'sass-rails',   '5.0.6'
+gem 'kaminari', '~> 0.17.0'
+gem 'kaminari-bootstrap', '~> 3.0.1'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
