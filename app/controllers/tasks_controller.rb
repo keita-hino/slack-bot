@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  protect_from_forgery except: [:create]
+  protect_from_forgery except: [:create,:update]
   def show
     @task = Task.find(params[:id])
   end
@@ -19,6 +19,20 @@ class TasksController < ApplicationController
       redirect_to root_url
     else
       render 'new'
+    end
+  end
+
+  def edit
+    @task = Task.find(params[:id])
+  end
+
+  def update
+    @task = Task.find(params[:id])
+    if @task.update_attributes(task_params)
+      flash[:info] = "タスクを更新しました"
+      redirect_to root_path
+    else
+      render 'edit'
     end
   end
 
