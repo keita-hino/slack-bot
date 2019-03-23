@@ -1,5 +1,9 @@
 class TasksController < ApplicationController
   protect_from_forgery except: [:create]
+  def show
+    @task = Task.find(params[:id])
+  end
+
   def index
     @tasks = Task.order(updated_at: "desc").page(params[:page]).per(30)
   end

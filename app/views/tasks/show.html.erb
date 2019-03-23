@@ -1,0 +1,20 @@
+<h1>タスク詳細</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@task) do |f| %>
+
+      <%= f.label :"タスク名" %>
+      <%= f.text_field :task_name, class: 'form-control',readonly: true %>
+
+      <%= f.label :"ステータス" %>
+      <%= f.text_field :completed, class: 'form-control',readonly: true %>
+
+      <%= f.label :"期限" %>
+      <%= f.text_field :due_date, class: 'form-control',readonly:true %>
+
+      <%= f.submit "編集", class: "btn btn-primary pull-right" %>
+
+    <% end %>
+  </div>
+</div>
