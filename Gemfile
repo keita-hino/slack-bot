@@ -48,6 +48,9 @@ group :development, :test do
   gem 'vcr'
   gem 'webmock'
   gem 'faker'
+  gem 'pry-rails'
+  gem 'pry-byebug'
+  gem 'pry-doc'
 end
 
 group :development do
