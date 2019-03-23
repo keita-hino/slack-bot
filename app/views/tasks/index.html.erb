@@ -12,6 +12,7 @@
             <th>ステータス</th>
             <th>期限</th>
             <th>最終更新日</th>
+            <th></th>
           </tr>
          </thead>
         <% @tasks.each do |task| %>
@@ -20,6 +21,7 @@
             <td><%= complete(task.completed) %></td>
             <td><%= show_dat(task.due_date) %></td>
             <td><%= show_dat(task.updated_at) %></td>
+            <td><%= link_to "詳細", task_path(task.id) ,class:"btn btn-primary" %></td>
           </tr>
         <% end %>
       </table>
