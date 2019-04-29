@@ -29,12 +29,14 @@ class Task < ApplicationRecord
     if text.include?("started:")
       pat = /(.*)(started:)/
       text =~ pat
-      t = Task.where(task_name:$1.strip)
-      if t[0]
-        t[0].started = true
-        t[0].save
-      else
-        return false
+      task = Task.where(task_name:$1.strip)
+      task.each do |task|
+        if task
+          task.started = true
+          task.save
+        else
+          return false
+        end
       end
     end
   end
