@@ -5,7 +5,14 @@ class TasksController < ApplicationController
   end
 
   def index
-    @tasks = Task.order(updated_at: "desc").page(params[:page]).per(30)
+    respond_to do |format|
+      format.html do
+        @tasks = Task.order(updated_at: "desc").page(params[:page]).per(30)
+      end
+      format.csv do
+        @tasks = Task.order(updated_at: "asc").page(params[:page])
+      end
+    end
   end
 
   def new

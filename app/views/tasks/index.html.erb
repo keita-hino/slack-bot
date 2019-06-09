@@ -31,3 +31,7 @@
   <div class="text-center">
     <%= paginate @tasks %>
   </div>
+  <div class="text-center">
+    <%= link_to "CSVダウンロード", tasks_path(format: :csv), class: "btn btn-primary" %>
+  </div>
+  
