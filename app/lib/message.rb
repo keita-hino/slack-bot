@@ -75,14 +75,14 @@ class Message
   end
 
   def self.complete_message(text,channel_id)
-    s = Task.where(task_name:text)
-    if s[0].nil?
+    task = Task.where(task_name:text).first
+    if task.blank?
       message = "入力されたタスクが見つかりません:face_with_monocle:\n>>>#{text}"
-    elsif !(s[0].completed.blank?)
+    elsif !(task.completed.blank?)
       message = "入力されたタスクのステータスはすでに「完了」になってます:man-gesturing-no:\n>>>#{text}"
-    elsif s[0].completed.blank?
-      s[0].completed = true
-      s[0].save
+    elsif task.completed.blank?
+      task.completed = true
+      task.save
       message = "入力されたタスクのステータスを「完了」に変更しました:+1:\n>>>#{text}"
     end
     Message.template(channel_id,message)
