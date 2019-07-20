@@ -42,10 +42,6 @@ class SlackbotController < ActionController::API
   end
 
   def slack_init
-    Slack.configure do |config|
-      config.token = ENV['SLACK_BOT_USER_TOKEN']
-      raise 'Missing ENV[SLACK_BOT_USER_TOKEN]!' unless config.token
-    end
     @client = Slack::Web::Client.new
   end
 end
