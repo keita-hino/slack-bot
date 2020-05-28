@@ -15,7 +15,7 @@ gem 'puma', '~> 3.11'
 gem 'paranoia'
 gem 'bootstrap-sass', '3.4.1'
 gem 'sass-rails',   '5.0.6'
-gem 'kaminari', '~> 0.17.0'
+gem 'kaminari', '~> 1.2.1'
 gem 'kaminari-bootstrap', '~> 3.0.1'
 gem 'rails-i18n', '~> 5.1' # 日本語化
 
